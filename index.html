@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>26 — World Cup 2026 Dashboard</title>
+<meta name="description" content="Live-ish scores, group standings, and a knockout predictor for the FIFA World Cup 2026." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="floodlights" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">⚽</span>
+    <div class="brand-text">
+      <span class="brand-26">26</span>
+      <span class="brand-sub">USA · MEX · CAN</span>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Dashboard sections">
+    <button class="tab is-active" data-tab="matches" role="tab" aria-selected="true">Matches</button>
+    <button class="tab" data-tab="standings" role="tab" aria-selected="false">Standings</button>
+    <button class="tab" data-tab="knockout" role="tab" aria-selected="false">Knockout</button>
+  </nav>
+  <div class="status" id="liveStatus">
+    <span class="dot"></span>
+    <span id="liveStatusText">checking feed…</span>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- MATCHES -->
+  <section class="panel is-active" id="panel-matches" role="tabpanel">
+    <div class="panel-head">
+      <h1>Match Centre</h1>
+      <p class="sub">104 matches across the group stage and knockouts.</p>
+    </div>
+
+    <div class="controls">
+      <div class="seg" id="statusFilter" data-value="all">
+        <button data-value="all" class="is-active">All</button>
+        <button data-value="live">Live</button>
+        <button data-value="upcoming">Upcoming</button>
+        <button data-value="finished">Finished</button>
+      </div>
+      <select id="groupFilter" aria-label="Filter by group">
+        <option value="all">All groups</option>
+      </select>
+      <input type="search" id="teamSearch" placeholder="Search a team…" aria-label="Search team" />
+    </div>
+
+    <div id="matchList" class="match-list"></div>
+  </section>
+
+  <!-- STANDINGS -->
+  <section class="panel" id="panel-standings" role="tabpanel">
+    <div class="panel-head">
+      <h1>Group Standings</h1>
+      <p class="sub">Top two in each group advance automatically. Best eight third‑place finishers fill the rest of the Round of 32.</p>
+    </div>
+    <div id="standingsGrid" class="standings-grid"></div>
+  </section>
+
+  <!-- KNOCKOUT -->
+  <section class="panel" id="panel-knockout" role="tabpanel">
+    <div class="panel-head">
+      <h1>Knockout Predictor</h1>
+      <p class="sub">Tap a team in any tie to send them through — your picks cascade all the way to the final. Saved on this device.</p>
+      <button class="btn-reset" id="resetPicks">Reset my bracket</button>
+    </div>
+    <div id="bracket" class="bracket"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Data: <a href="https://github.com/rezarahiminia/worldcup2026" target="_blank" rel="noopener">worldcup2026 API</a> by rezarahiminia, with an offline snapshot as backup · Built for late‑night studying, not FIFA‑official.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
